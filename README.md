@@ -4,6 +4,13 @@ In this project, we have designed a type one tsk fuzzy neural network to solve t
 - We performed the step of learning the weights of the last layer based on the pseudo-inverse method.
 - The input function of the network is the Mackey Glass functions.
 
+![mac](https://user-images.githubusercontent.com/115353236/200356432-d7d5f0cc-a742-44c0-827e-b99fe4401e49.PNG)
+
+
+based on the validation error diagram, we obtain the parameters value used in the problem wich are respectively the number of clusters, the criterion Ɣ (to adjust the coverage of the rules obtained in the neural network) and λ (regulator term which is in the objective function in the pseudo-inverse method to obtain the matrix A)
+
+The results of setting the parameters are briefly shown in the following table:
+
 <table>
   <tr>
     <td>Number of clusters</td>
@@ -13,9 +20,7 @@ In this project, we have designed a type one tsk fuzzy neural network to solve t
   <tr>
     <td>40</td>
     <td>3.1</td>
-    <td>0.4/td>
+    <td>0.4</td>
   </tr>
 </table>
-  
-  
   
