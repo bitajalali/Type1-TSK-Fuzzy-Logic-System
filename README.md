@@ -24,3 +24,16 @@ The results of setting the parameters are briefly shown in the following table:
   </tr>
 </table>
   
+In the following, the details of the steps and results of the parameter setting section are explained
+ in detail.
+
+
+Work steps:
+1 Clustering of educational data:
+First, we divide the data set from seconds (1 to 1500) into three training, evaluation and validation sections:
+We apply FCM clustering to training data based on input and output values. Because the formation of a cluster means that the outputs
+must be close to each other within that cluster, so if the data is clustered based on only the inputs, the outputs may not be similar
+in a cluster.Therefore, we have integrated the inputs and labels and enter them as a feature vector into the input of the FCM algorithm.
+Finally, we get the U matrix that contains the degree of belonging of each training data to each cluster, as well as their center and variance.
+![ن](https://user-images.githubusercontent.com/115353236/200360717-3327c779-ef33-429d-99c1-9c9697703c5a.PNG)
+
