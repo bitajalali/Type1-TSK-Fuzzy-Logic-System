@@ -46,6 +46,34 @@ And then we normalize these rules:
 # $e^{\dfrac{Ɣ^{(x-v)^2}}{var^2}}$
 
 
+```python
+u_test=np.zeros((int(c_n),int(len_test)))
+for i in range(c_n):
+   temp=((test_data[:,0]-mean_var[i,0])**2)/mean_var[i,1]
+   u_test[i,:]=np.exp(-gama*temp)
+
+```
+So up to this point, the rules have been obtained in the fuzzy neural network.
+Now, in this section, we will complete the fuzzy neural network model, which in TSK type 1 is the same as matrix A, 
+which we obtain using training data and pseudo-inverse method. In this method, it is obtained by using the formula 
+against the coefficients of a in the matrix A:
+
+## $A={(X^T+λI)}^{-1} +X^T.Y^*$
+
+```python
+temp=np.matmul(X_train.T,X_train)+(np.identity(c_n*2)*lam)
+    term1=np.linalg.inv(temp)
+    term2=np.matmul(X_train.T,true_label)
+    A=np.matmul(term1,term2)
+
+```
+
+
+
+
+
+
+
 
 #### 4.2.1 Theroem 1
 Intuitively, this theorem upper bounds the error when we have seen enough data. <br>
