@@ -67,27 +67,33 @@ temp=np.matmul(X_train.T,X_train)+(np.identity(c_n*2)*lam)
     A=np.matmul(term1,term2)
 
 ```
+In the mentioned formula, a regulating term called λ is added, which has two advantages:
+- It causes the values of A not to be too large in the optimization function.
+- It is possible that X. 𝑿𝑻 has a zero eigenvalue, so when it is added to λ, 
+the eigenvalues become positive and thus it becomes invertible.
+The way to determine the optimal value of λ: for different values of λ, we calculate the matrix A and examine the validation error.
 
+![plot](https://user-images.githubusercontent.com/115353236/200554870-903e911e-8638-47d0-9d20-9ce626a625f3.PNG)
 
+3. Predicting the values of educational data and evaluation and validation:
+Now, the model (matrix A) has been optimized and built using the training data values with the pseudo-inverse method. Therefore, data prediction will be done using the formula: Y=X.A.
+We obtain the MSE error for the training and evaluation data according to the following figures. Also, by using the validation error, we can determine the optimal coefficient for the parameters of the number of clusters and Ɣ.
 
+![plot](https://user-images.githubusercontent.com/115353236/200556294-94693856-c0cc-43cd-a84d-0d9f118d4627.PNG)
+Checking and analyzing the validation chart Ɣ and the number of clusters:
+According to the above-mentioned Gaussian membership function formula, as the parameter Ɣ increases or decreases, all the coverage rules become larger or smaller in the same proportion. Based on the clustering of the training data, we have obtained a standard deviation for each cluster. Now, if we want to make this interval a smaller or larger value for all the rules, the value of this parameter can be adjusted, and here we have obtained the optimal value by checking the validation error.
+As it can be concluded from the formula of the belonging function, the lower the amount of the super parameter Ɣ is, the coverage of all the rules increases by the same amount, and it can be seen in the graph related to the super parameter Ɣ that for the initial values of 0.1 to 0.3 (which is very low) The coverage of the 
+rules has increased to such an extent that it has damaged the accuracy of the model and the validation error has increased significantly, but the most optimal amount is 0.4. The values will be less and the model will cover less points between the points and as a result the error will increase.
+In this way, we will train the model by using the optimal values obtained by the validation error, and we will ultimately reduce the training and evaluation error 
+to a minimum: 
+Fitted graph of the Mackey_Glass function:
 
+![plot](https://user-images.githubusercontent.com/115353236/200562044-3d1c0ebc-8a75-4a11-aec8-f24614b578d4.PNG)
 
+As it can be seen from the regression results, the fuzzy neural network with the help of logic and fuzzy system has been able to achieve the results with a limited number of training data, unlike deep neural networks that require a large number of training data to train the model. and achieve good accuracy.
 
-
-
-#### 4.2.1 Theroem 1
-Intuitively, this theorem upper bounds the error when we have seen enough data. <br>
-
-Let $xt, 1 \leq t \leq N + N_0$ be generated using a mixture of Gaussians  with wi = 1/k,
-for all i,  Let $N_0, N \geq  O(1)k^3d^3 \log d $ and $ C \geq \Omega {(k\log k)^{1/4}}$. Then, the algorithm's output satifies the following error bound:
-
-$$ \mathbb{E}(|| \mu^0 - \mu^* ||^2 ) \leq \dfrac{\max_i  ||\mu_i^* ||^2 }{N^{\Omega(1)}} + O(k^3)(\sigma^2\dfrac{d\log N}{N} + \exp (-C^2/8)(c^2+k)\sigma^2) $$
-
-In the following, we will verify theorem 1 experimentally.
-
-```python
-def theorem_1(mu, N, sigma, K, C, d):
-    return (np.max(LA.norm(mu,axis=0)) / N) + (K**3 * (sigma**2 * d * np.log(N) / N) + np.exp(-C**2 / 8) * (C**2 + K)* sigma**2)
-```
+- A suggestion to improve the performance of the system for this regression problem:
+In general, using the clustering method in the fuzzy neural network, where FCM clustering is used here, is more appropriate in classification problems than regression.
+In the regression problem, it is better that the centers of the rules (the centers of the belonging functions) are the extreme points of the function. Because clustering does not guarantee to determine these points as cluster centers. So, my suggestion to achieve more accurate results is to find the extreme points of the function in the training data section and determine them as the centers of the rules.
     
 
