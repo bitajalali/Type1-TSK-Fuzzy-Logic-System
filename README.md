@@ -43,8 +43,8 @@ The parameter Ɣ actually makes the coverage of all the rules proportionally lar
 So, in this section, by obtaining the Gaussian functions (membership functions) whose parameters are obtained using the FCM clustering results of the training data, according to the following code, the rules obtained from the evaluation and validation data can be obtained.
 And then we normalize these rules:
 
-$$ e^Ɣ^{{(x-v)^2}/var^2} $$
- $\sqrt{3x-1}+(1+x)^2$
+# $e^{\dfrac{Ɣ^{(x-v)^2}}{var^2}}$
+
 
 
 #### 4.2.1 Theroem 1
